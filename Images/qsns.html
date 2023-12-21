@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://unpkg.com/typed.js@2.0.12"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #030322;
+            position: relative;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #faf2f2;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 10%;
+            height: auto;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .clock {
+            width: 6%;
+            height: auto;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            margin-right: 170px;
+            margin-top: 30px;
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            color: #faf2f2;
+            position: absolute;
+            top: 15px;
+            right: 70px;
+            margin-right: 40px;
+            margin-top: 50px;
+        }
+
+        hr {
+            color: white;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        h2 {
+            color: white;
+            margin: 20px 0;
+        }
+
+        .qsns {
+            text-align: center;
+            margin: 20px;
+            border: 2px solid #faf2f2;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        h3 {
+            color: #faf2f2;
+        }
+
+        input {
+            margin: 10px;
+        }
+
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+/* * {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(10, 10, 10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding-top: 30px;
+} */
+
+.quiz-container {
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+    overflow: hidden;
+    width: 600px;
+    max-width: 100%;
+    background: rgb(63, 94, 251);
+    background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+}
+
+.quiz-header {
+    padding: 4rem;
+}
+
+h2 {
+    padding: 1rem;
+    text-align: center;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+
+ul li label {
+    cursor: pointer;
+}
+
+button {
+    background-color: #aa84bb;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: inherit;
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 1.3rem;
+}
+
+button:hover {
+    background-color: #732d91;
+}
+
+button:focus {
+    background-color: #5e3370;
+    outline: none;
+}
+/* @media screen and (max-width: 600px) {
+            .logo, .clock {
+                width: 50%;
+            }} */
+  
+  </style>
+</head>
+<body>
+    <div>
+        <img src="C:\Data\workspace\HTML\Quiz\Images\logo.png" class="logo">
+        <img src="C:\Data\workspace\HTML\Quiz\Images\clock timer.png" class="clock">
+        <div class="timer" id="timer">2:00</div>
+    </div>
+    
+
+
+        <div class="quiz-container" id="quiz">
+            <div class="quiz-header">
+                <h2 id="question">Question text</h2>
+                <ul>
+                    <li>
+                        <input type="radio" id="a" name="answer" class="answer" />
+                        <label id="a_text" for="a">Question</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="b" name="answer" class="answer" />
+                        <label id="b_text" for="b">Question</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="c" name="answer" class="answer" />
+                        <label id="c_text" for="c">Question</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="d" name="answer" class="answer" />
+                        <label id="d_text" for="d">Question</label>
+                    </li>
+                </ul>
+            </div>
+            <button id="submit">Submit</button>
+        </div>
+
+
+    
+    
+
+    <script>
+        var timerElement = document.getElementById('timer');
+        var totalTime = 120; 
+
+        function updateTimer() {
+            var minutes = Math.floor(totalTime / 60);
+            var seconds = totalTime % 60;
+
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            timerElement.textContent = minutes + ':' + seconds;
+
+            if (totalTime > 0) {
+                totalTime--;
+                setTimeout(updateTimer, 1000);
+            }
+        }
+
+        updateTimer();
+
+        const quizData = [
+{
+question: "What is the term for a persistent feeling of sadness, hopelessness, and a lack of interest or pleasure in activities?",
+a: "Anxiety",
+b: " Bipolar disorder",
+c: " Depression",
+d: "Schizophrenia",
+correct: "c" },
+
+{
+question: "Which neurotransmitter is often associated with mood regulation and is implicated in conditions like depression?",
+a: "Serotonin",
+b: "Dopamine",
+c: "GABA",
+d: " Acetylcholine",
+correct: "a" },
+
+{
+question: "What is the primary purpose of cognitive-behavioral therapy (CBT) in treating mental health disorders?",
+a: "Enhancing creativity",
+b: "Changing negative thought patterns and behaviors",
+c: "Promoting physical activity",
+d: "Encouraging socialization",
+correct: "b" },
+
+{
+question: " Which of the following is a common symptom of anxiety disorders?",
+a: "Elevated mood",
+b: "Persistent fear or worry",
+c: "Impaired memory",
+d: " Slurred speech",
+correct: "b" },
+
+{
+question: "What mental health disorder is characterized by extreme mood swings, including episodes of mania and depression?",
+a: "Obsessive-Compulsive Disorder (OCD)",
+b: "Bipolar disorder",
+c: "Generalized Anxiety Disorder (GAD)",
+d: "Post-Traumatic Stress Disorder (PTSD)",
+correct: "b"
+},
+
+{
+question: "What is the first step someone should take if they suspect they are experiencing a mental health issue?",
+a: "Ignore it; it will go away on its own",
+b: "Consult a friend or family member",
+c: "Seek professional help",
+d: "Engage in self-medication",
+correct: "c"
+},
+
+{
+question: " Which lifestyle factor is often associated with better mental health?",
+a: "Lack of sleep",
+b: "Sedentary lifestyle",
+c: "Healthy diet and regular exercise",
+d: "Excessive caffeine intake",
+correct: "c"
+},
+
+{
+question: " What term is used to describe a state of intense fear or discomfort that arises abruptly and peaks within minutes?",
+a: "Obsession",
+b: "Panic attack",
+c: "Phobia",
+d: "Compulsion",
+correct: "b"
+},
+
+{
+question: "Which of the following is NOT a common symptom of post-traumatic stress disorder (PTSD)?",
+a: "Flashbacks",
+b: "Intrusive thoughts",
+c: "Excessive happiness",
+d: "Avoidance of reminders",
+correct: "c"
+},
+
+{
+question: " What is the purpose of mindfulness meditation in mental health practices?",
+a: "Increase stress levels",
+b: "Enhance focus and concentration",
+c: "Encourage impulsive behavior",
+d: "Worsen anxiety",
+correct: "b"
+},
+
+
+
+
+
+
+
+
+
+
+
+];
+
+const quiz = document.getElementById("quiz");
+const answerEls = document.querySelectorAll(".answer");
+const questionEl = document.getElementById("question");
+const a_text = document.getElementById("a_text");
+const b_text = document.getElementById("b_text");
+const c_text = document.getElementById("c_text");
+const d_text = document.getElementById("d_text");
+const submitBtn = document.getElementById("submit");
+
+let currentQuiz = 0;
+let score = 0;
+
+loadQuiz();
+
+function loadQuiz() {
+deselectAnswers();
+
+const currentQuizData = quizData[currentQuiz];
+
+questionEl.innerText = currentQuizData.question;
+a_text.innerText = currentQuizData.a;
+b_text.innerText = currentQuizData.b;
+c_text.innerText = currentQuizData.c;
+d_text.innerText = currentQuizData.d;
+}
+
+function getSelected() {
+let answer = undefined;
+answerEls.forEach(answerEl => {
+if (answerEl.checked) {
+answer = answerEl.id;
+}
+});
+return answer;
+}
+
+function deselectAnswers() {
+answerEls.forEach(answerEl => {
+answerEl.checked = false;
+});
+}
+
+submitBtn.addEventListener("click", () => {
+const answer = getSelected();
+if (answer) {
+if (answer === quizData[currentQuiz].correct) {
+score++;
+}
+currentQuiz++;
+if (currentQuiz < quizData.length) { loadQuiz(); } else { quiz.innerHTML=` <h2>You answered correctly at ${score}/${quizData.length} questions.</h2>
+    <button onclick="#">Reload</button>
+    `;
+    }
+    }
+    });
+    </script>
+</body>
+</html>
